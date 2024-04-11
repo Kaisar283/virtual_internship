@@ -1,4 +1,7 @@
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -59,6 +62,29 @@ public class City {
     public void setFoundation(Integer foundation) {
         this.foundation = foundation;
     }
+
+    public static void sortByCityName(List<City> cityList){
+        Collections.sort(cityList, new Comparator<City>() {
+            @Override
+            public int compare(City o1, City o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
+    }
+
+    public static void sortByCityNameAndRegion(List<City> cityList){
+        cityList.sort(new Comparator<City>() {
+            @Override
+            public int compare(City o1, City o2) {
+                int result = -(o1.getRegion().compareTo(o2.getRegion()));
+                if (result == 0) {
+                    return o1.getName().compareTo(o2.getName());
+                }
+                return result;
+            }
+        });
+    }
+
 
     @Override
     public String toString() {

@@ -15,12 +15,18 @@ public class Main {
             cities.add(stringToObjectCity(city));
         }
 
+        City.sortByCityName(cities);
         Iterator<City> iterator = cities.iterator();
         while (iterator.hasNext()){
             City city = iterator.next();
-            if(city.getFoundation() == null){
-                System.out.println(city.toString());
-            }
+            System.out.println(city.toString());
+        }
+
+        City.sortByCityNameAndRegion(cities);
+        Iterator<City> iterator1 = cities.iterator();
+        while (iterator1.hasNext()){
+            City city = iterator1.next();
+            System.out.println(city.toString());
         }
     }
     private static City stringToObjectCity(String[] city){
