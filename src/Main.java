@@ -18,7 +18,9 @@ public class Main {
         Iterator<City> iterator = cities.iterator();
         while (iterator.hasNext()){
             City city = iterator.next();
-            System.out.println(city.toString());
+            if(city.getFoundation() == null){
+                System.out.println(city.toString());
+            }
         }
     }
     private static City stringToObjectCity(String[] city){
@@ -36,13 +38,13 @@ public class Main {
     }
 
     public static Integer convertFoundation(String foundation){
-        Pattern patternForYears = Pattern.compile("^\\d{4}");
+        Pattern patternForYears = Pattern.compile("^\\d{3,4}");
         Matcher matcherForYears = patternForYears.matcher(foundation);
 
-        Pattern patternForTwoCentury = Pattern.compile("^\\d{1,2}-\\d{1,2}\\sвека");
+        Pattern patternForTwoCentury = Pattern.compile("^(\\d+)[—-](\\d+)\\sвека");
         Matcher matcherForTwoCentury = patternForTwoCentury.matcher(foundation);
 
-        Pattern patternForCentury = Pattern.compile("^\\d{1,2} век");
+        Pattern patternForCentury = Pattern.compile("^\\d{1,2}\\sвек");
         Matcher matcherForCentury = patternForCentury.matcher(foundation);
 
         Integer foundationYear = null;
@@ -53,7 +55,7 @@ public class Main {
         }
 
         if(matcherForTwoCentury.find()){
-            String[] centuries = matcherForTwoCentury.group().split("-");
+            String[] centuries = matcherForTwoCentury.group().split("[—-]");
             foundationYear = Integer.parseInt(centuries[0]);
             foundationYear = (foundationYear - 1) + 50;
         }
