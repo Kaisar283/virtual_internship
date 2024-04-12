@@ -15,19 +15,8 @@ public class Main {
             cities.add(stringToObjectCity(city));
         }
 
-        City.sortByCityName(cities);
-        Iterator<City> iterator = cities.iterator();
-        while (iterator.hasNext()){
-            City city = iterator.next();
-            System.out.println(city.toString());
-        }
-
-        City.sortByCityNameAndRegion(cities);
-        Iterator<City> iterator1 = cities.iterator();
-        while (iterator1.hasNext()){
-            City city = iterator1.next();
-            System.out.println(city.toString());
-        }
+        City[] citiesArray = City.convertCityListToArray(cities);
+        System.out.println(City.findMaxPopulation(citiesArray));
     }
     private static City stringToObjectCity(String[] city){
         Integer foundation = null;

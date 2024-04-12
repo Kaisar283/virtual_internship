@@ -1,7 +1,4 @@
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -85,6 +82,22 @@ public class City {
         });
     }
 
+    public static City[] convertCityListToArray(List<City> cityList){
+        City[] cities = cityList.toArray(cityList.toArray(new City[0]));
+        return cities;
+    }
+
+    public static String findMaxPopulation(City[] cities){
+        int indexMaxElem = 0;
+        Integer maxValue = 0;
+        for (int i = 0; i < cities.length; i++) {
+            if(cities[i].getPopulation() > maxValue ){
+                maxValue = cities[i].getPopulation();
+                indexMaxElem = i;
+            }
+        }
+        return String.format("[%d] = %d", indexMaxElem, maxValue);
+    }
 
     @Override
     public String toString() {
