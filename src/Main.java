@@ -15,8 +15,11 @@ public class Main {
             cities.add(stringToObjectCity(city));
         }
 
-        City[] citiesArray = City.convertCityListToArray(cities);
-        System.out.println(City.findMaxPopulation(citiesArray));
+        Map<String, Integer> citiesByRegion = City.numberOfCitiesByRegion(cities);
+        for(String key : citiesByRegion.keySet()){
+            Integer value = citiesByRegion.get(key);
+            System.out.printf("%s - %d%n", key, value);
+        }
     }
     private static City stringToObjectCity(String[] city){
         Integer foundation = null;

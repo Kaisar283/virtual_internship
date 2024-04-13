@@ -99,6 +99,21 @@ public class City {
         return String.format("[%d] = %d", indexMaxElem, maxValue);
     }
 
+    public static Map<String, Integer> numberOfCitiesByRegion(List<City> cityList){
+        Map<String, Integer> cityMap = new HashMap<>();
+        sortByCityNameAndRegion(cityList);
+        Iterator<City> iterator = cityList.listIterator();
+        while (iterator.hasNext()){
+            City city = iterator.next();
+            if(!cityMap.containsKey(city.getRegion())){
+                cityMap.put(city.getRegion(), 1);
+            }else {
+                cityMap.compute(city.getRegion(), (k, v) -> v + 1);
+            }
+        }
+        return cityMap;
+    }
+
     @Override
     public String toString() {
         return "City{" +
